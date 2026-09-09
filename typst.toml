@@ -1,0 +1,7 @@
+[package]
+name = "lilaq-schoolbook"
+version = "0.1.0"
+entrypoint = "lib.typ"
+categories = [ ]
+disciplines = [ ]
+description = "lilaq plots with better tick-distance control and scaling"
