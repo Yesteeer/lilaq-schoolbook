@@ -1,68 +1,61 @@
 # Lilaq-schoolbook
 
-_Lilaq-schoolbook_ is a typst package that provides a simple way to plot functions with schoolbook style whilst controlling the axes length and scale intervals.
-
-## Dependencies
-
-As the name suggests, this package is based on the incredible [lilaq](https://typst.app/universe/package/lilaq/) package.
+_Lilaq-schoolbook_ is a typst package based on [lilaq](https://typst.app/universe/package/lilaq/) that provides three things: 
+    - a way to use _lilaq_'s `diagram()` function with controlled graduations interval length and scaling on each axis
+    - a `plot()` function which takes _lilaq_'s `linspace` function argument for generating a default array of $x$ coordinates.
+    - a fancy version of _lilaq_'s schoolbook theme 
 
 ## Quickstart
 
 Download the package locally (as described on the [Typst Packages](https://github.com/typst/packages)) repository. Then import and use _lilaq-schoolbook_.
 
 ```typst
-#import "@local/lilaq-schoolbook:0.1.0": *
+#import "@local/lilaq-schoolbook:0.1.0" as sb
 ```
 
 ## Functions
 
-The package comes with the main functions `plot()` and `add-func()` which correspond respectively to _lilaq_'s `diagram()` and `plot()` functions.
+The package comes with two functions `diagramm()` and `plot()` which are based respectively on _lilaq_'s `diagram()` and `plot()` functions. 
+
+The former provides control graduations interval length and scaling on each axis, while the latter includes a way to generate a linearly distributed array of $x$ coordinates.
+
+## Theme
+
+The fancy schoolbook theme can be activated by using the show rule:
+
+```typst
+#show sb.lilaq-schoolbook
+```
+Each of the following examples is compiled with and without the schoolbook theme.
 
 ## Examples
 
-By default, `plot()` generates two perpendicular axes from 0 to 2, with a background grid. The scale of the axes' graduation is 1:1cm. 
+By default, `plot()` generates two perpendicular axes from 0 to 2 with a default offset of 0.3. The scale of both axes' graduation is 1:1cm.
 
 ```typst
 #import "@local/lilaq-schoolbook:0.1.0": *
 
 #set page(height: auto, margin: 1cm, width: auto)
 
-#plot()
+#show: sb.lilaq-schoolbook
+
+#sb.diagram()
 ```
 
 ![image](./assets/default-example.png)
 
-It is also possible to remove the grid using _lilaq_'s custom set rules.
+We can now add a function using the `plot()` function as well as labels for both axes. We can also improve the visualization by  scaling both axes.
 
 ```typst
 [...]
 
-#import "@preview/lilaq:0.6.0" as lq
-
-// remove background grid
-#show: lq.set-grid(
-  stroke: none
-)
-
-#plot()
-```
-
-![image](./assets/empty-example.png)
-
-We can now add a function using `add-func()` and labels to our system and scale the axis for better visualization.
-
-```typst
-[...]
-
-#plot(
-  // scale the axes' tick-distance
-  scale: (3, 2),
+#sb.diagram(
   // add labels to axes
   labels: ($x$, $y$),
+  // scale the axes' tick-distance
+  scale: (3, 2),
   // add a function to the plot
-  add-func(x => calc.pow(x, 2), label: $f(x) = x^2$),
-  // show the origin
-  show-origin: true,
+  sb.plot(x => calc.pow(x, 2), label: $f(x) = x^2$),
 )
 ```
 
@@ -75,17 +68,7 @@ Finally, we can use still use all of _lilaq_'s power for some more advanced resu
 
 #import "@preview/lilaq:0.6.0" as lq
 
-#set page(height: auto, margin: 1cm, width: auto)
-
-// set vertical spacing between the two functions' legends 
-#show lq.selector(lq.legend): set grid(row-gutter: 5pt)
-
-// set a custom grid styling
-#show: lq.set-grid(
-  stroke: (paint: luma(150), dash: "dotted", thickness: .5pt),
-)
-
-#plot(
+#sb.diagram(
   // set bottom-left limit coordinates
   start: (-6, -1.5),
   // set top-right limit coordinates
@@ -107,12 +90,9 @@ Finally, we can use still use all of _lilaq_'s power for some more advanced resu
     format-ticks: lq.tick-format.fraction.with(suffix: $pi$),
   ),
 
-  // place the legends box
-  legend: (position: top + right, dy: -15pt),
-    
   // add functions to the plot
-  add-func(x => calc.sin(x), start: -6.5, end: 6.5, label: lq.label($sin(x)$, dy: 2cm)),
-  add-func(x => calc.cos(x), start: -6.5, end: 6.5, label: $cos(x)$),
+  sb.plot(x => calc.sin(x), start: -6.5, end: 6.5, label: lq.label($sin(x)$, dy: 2cm)),
+  sb.plot(x => calc.cos(x), start: -6.5, end: 6.5, label: $cos(x)$),
 )
 ```
 

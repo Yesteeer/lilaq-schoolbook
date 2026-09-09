@@ -1,1 +1,1 @@
-#import "core.typ": plot, add-func
+#import "core.typ": diagram, plot, lilaq-schoolbook
