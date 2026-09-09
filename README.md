@@ -39,6 +39,7 @@ It is also possible to remove the grid using _lilaq_'s custom set rules.
 
 #import "@preview/lilaq:0.6.0" as lq
 
+// remove background grid
 #show: lq.set-grid(
   stroke: none
 )
@@ -48,15 +49,19 @@ It is also possible to remove the grid using _lilaq_'s custom set rules.
 
 ![image](./assets/empty-example.png)
 
-We can now add a function and labels to our system and scale the axis for better visualization.
+We can now add a function using `add-func()` and labels to our system and scale the axis for better visualization.
 
 ```typst
 [...]
 
 #plot(
+  // scale the axes' tick-distance
   scale: (3, 2),
+  // add labels to axes
   labels: ($x$, $y$),
+  // add a function to the plot
   add-func(x => calc.pow(x, 2), label: $f(x) = x^2$),
+  // show the origin
   show-origin: true,
 )
 ```
@@ -70,6 +75,8 @@ Finally, we can use still use all of _lilaq_'s power for some more advanced resu
 
 #import "@preview/lilaq:0.6.0" as lq
 
+#set page(height: auto, margin: 1cm, width: auto)
+
 // set vertical spacing between the two functions' legends 
 #show lq.selector(lq.legend): set grid(row-gutter: 5pt)
 
@@ -79,11 +86,17 @@ Finally, we can use still use all of _lilaq_'s power for some more advanced resu
 )
 
 #plot(
+  // set bottom-left limit coordinates
   start: (-6, -1.5),
+  // set top-right limit coordinates
   end: (5.8, 1.5),
+  // scale the axes' tick-distance
   scale: 1.2,
+  // add axes' offset
   offset: (0, 0.3),
+  // add labels to axes
   labels: ($x$, $y$),
+  // add/update some arguments to pass to the xaxis() function
   add-to-xaxis: (
     tick-distance: 1/ 2,
 
@@ -97,7 +110,7 @@ Finally, we can use still use all of _lilaq_'s power for some more advanced resu
   // place the legends box
   legend: (position: top + right, dy: -15pt),
     
-  // add functions to plot
+  // add functions to the plot
   add-func(x => calc.sin(x), start: -6.5, end: 6.5, label: lq.label($sin(x)$, dy: 2cm)),
   add-func(x => calc.cos(x), start: -6.5, end: 6.5, label: $cos(x)$),
 )
