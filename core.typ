@@ -1,5 +1,5 @@
 #import "@preview/lilaq:0.6.0" as lq
-#import "@preview/zero:0.5.0" as zero
+#import "@preview/zero:0.6.1" as zero
 #import "@preview/tiptoe:0.4.0" as tiptoe
 #import "@preview/elembic:1.1.1" as e
 

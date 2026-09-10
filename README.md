@@ -1,9 +1,9 @@
 # Lilaq-schoolbook
 
 _Lilaq-schoolbook_ is a typst package based on [lilaq](https://typst.app/universe/package/lilaq/) that provides three things: 
-    - a way to use _lilaq_'s `diagram()` function with controlled graduations interval length and scaling on each axis
-    - a `plot()` function which takes _lilaq_'s `linspace` function argument for generating a default array of $x$ coordinates.
-    - a fancy version of _lilaq_'s schoolbook theme 
+- a way to use _lilaq_'s `diagram()` function with controlled graduations interval length and scaling on each axis
+- a `plot()` function which takes _lilaq_'s `linspace` function argument for generating a default array of $x$ coordinates.
+- a fancy version of _lilaq_'s schoolbook theme 
 
 ## Quickstart
 
