@@ -4,6 +4,7 @@ _Lilaq-schoolbook_ is a typst package based on [lilaq](https://typst.app/univers
 - a way to use _lilaq_'s `diagram()` function with controlled graduations interval length and scaling on each axis
 - a `plot()` function which takes _lilaq_'s `linspace` function argument for generating a default array of $x$ coordinates.
 - a fancy version of _lilaq_'s schoolbook theme 
+Take a look at the [manual](https://github.com/Yesteeer/typst-lilaq-schoolbook/blob/master/docs/manual.pdf?raw=true) for more information on the API.
 
 ## Quickstart
 
@@ -24,7 +25,7 @@ The former provides control graduations interval length and scaling on each axis
 The fancy schoolbook theme can be activated by using the show rule:
 
 ```typst
-#show sb.lilaq-schoolbook
+#show: sb.lilaq-schoolbook
 ```
 Each of the following examples is compiled with and without the schoolbook theme.
 
@@ -91,7 +92,7 @@ Finally, we can use still use all of _lilaq_'s power for some more advanced resu
   ),
 
   // add functions to the plot
-  sb.plot(x => calc.sin(x), start: -6.5, end: 6.5, label: lq.label($sin(x)$, dy: 2cm)),
+  sb.plot(x => calc.sin(x), start: -6.5, end: 6.5, label: $sin(x)$),
   sb.plot(x => calc.cos(x), start: -6.5, end: 6.5, label: $cos(x)$),
 )
 ```
